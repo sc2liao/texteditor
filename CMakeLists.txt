@@ -21,13 +21,21 @@ qt_standard_project_setup(REQUIRES 6.8)
 # 3. EXECUTABLE (C++ entry only; UI lives under qml/)
 qt_add_executable(texteditor
     src/main.cpp
+    src/backend/FileMetadata.cpp
+    src/backend/PathUtils.cpp
+    src/backend/TextDocument.cpp
+    src/backend/EditorBackend.cpp
 )
+
+target_include_directories(texteditor PRIVATE src)
 
 qt_add_qml_module(texteditor
     URI TextEditor
     VERSION 1.0
     QML_FILES
         qml/Main.qml
+        qml/components/EditorPane.qml
+        qml/components/UnsavedChangesDialog.qml
 )
 
 # 4. LINKING
