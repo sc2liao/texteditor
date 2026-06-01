@@ -9,6 +9,17 @@ Rectangle {
 
     color: "#1e1e1e"
 
+    function updateSyntaxHighlighting() {
+        if (!editor.textDocument) {
+            return
+        }
+        if (document.hasOpenFile) {
+            SyntaxHighlighter.applyForFileName(editor.textDocument, document.filePath)
+        } else {
+            SyntaxHighlighter.clear(editor.textDocument)
+        }
+    }
+
     ScrollView {
         anchors.fill: parent
         anchors.margins: 8
@@ -20,7 +31,6 @@ Rectangle {
             placeholderText: document.hasOpenFile
                 ? ""
                 : qsTr("No file open. Use File → Open to load a file.")
-            color: "#f0f0f0"
             placeholderTextColor: "#888888"
             selectionColor: "#264f78"
             selectedTextColor: "#ffffff"
@@ -29,6 +39,7 @@ Rectangle {
             readOnly: !document.hasOpenFile
             font.family: "monospace"
             font.pixelSize: 13
+            color: "#f0f0f0"
             text: document.content
 
             onTextChanged: {
@@ -36,6 +47,8 @@ Rectangle {
                     document.content = text
                 }
             }
+
+            Component.onCompleted: updateSyntaxHighlighting()
 
             TapHandler {
                 acceptedButtons: Qt.RightButton
@@ -60,6 +73,10 @@ Rectangle {
             if (!document.hasOpenFile) {
                 editor.text = ""
             }
+            updateSyntaxHighlighting()
+        }
+        function onOpenSucceeded() {
+            updateSyntaxHighlighting()
         }
     }
 }

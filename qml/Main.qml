@@ -243,8 +243,9 @@ ApplicationWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 color: "#cccccc"
                 text: document.hasOpenFile
-                    ? qsTr("Editing: %1  |  Encoding: %2  |  Size: %3")
+                    ? qsTr("Editing: %1  |  Syntax: %2  |  Encoding: %3  |  Size: %4")
                         .arg(document.fileName)
+                        .arg(SyntaxHighlighter.languageNameForFile(document.filePath))
                         .arg(document.encoding)
                         .arg(document.fileSize)
                     : qsTr("Ready")

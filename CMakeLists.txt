@@ -25,6 +25,10 @@ qt_add_executable(texteditor
     src/backend/PathUtils.cpp
     src/backend/TextDocument.cpp
     src/backend/EditorBackend.cpp
+    src/backend/syntax/SyntaxLanguage.cpp
+    src/backend/syntax/SyntaxDefinitionRegistry.cpp
+    src/backend/syntax/GenericSyntaxHighlighter.cpp
+    src/backend/syntax/SyntaxHighlighterController.cpp
 )
 
 target_include_directories(texteditor PRIVATE src)
