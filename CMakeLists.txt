@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.21)
 
 # 1. SET THE PATH FIRST
-# We set CMAKE_PREFIX_PATH at the very top so EVERY find_package call knows where to look.
-set(CMAKE_PREFIX_PATH "/home/denny/Qt/6.8.0/gcc_64/")
+# this path will set when the cmake command execute
+#set(CMAKE_PREFIX_PATH "/home/denny/Qt/6.8.0/gcc_64/")
+#set(CMAKE_PREFIX_PATH "/home/dliao/Qt/6.8.0/gcc_64/")
 
 project(texteditor VERSION 0.1.0 LANGUAGES CXX)
 
